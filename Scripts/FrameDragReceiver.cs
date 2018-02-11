@@ -5,7 +5,6 @@
 
 namespace Oznogon.FrameDrag
 {
-    [RequireComponent(typeof(Rigidbody))]
     public class FrameDragReceiver : MonoBehaviour
     {
         public Vector3 lastDragAngularVelocity;
@@ -17,13 +16,24 @@ namespace Oznogon.FrameDrag
         private void OnTriggerEnter(Collider collision)
         {
             dragger = collision.transform.GetComponent<FrameDragger>();
+
+            if (dragger == null)
+                dragger = collision.transform.GetComponentInParent<FrameDragger>();
+
             if (dragger != null)
             {
                 draggerRb = dragger.GetComponent<Rigidbody>();
-                Debug.Log(name + ": dragger.name = " + dragger.name
-                    + "\ndraggerRb.GetPointVelocity(transform.position) = " + draggerRb.GetPointVelocity(transform.position)
-                    + "\ndraggerRb.angularVelocity * Mathf.Rad2Deg = " + (draggerRb.angularVelocity * Mathf.Rad2Deg)
-                );
+
+                if (draggerRb == null)
+                    draggerRb = dragger.GetComponentInParent<Rigidbody>();
+
+                if (draggerRb != null)
+                {
+                    Debug.Log(name + ": dragger.name = " + dragger.name
+                        + "\ndraggerRb.GetPointVelocity(transform.position) = " + draggerRb.GetPointVelocity(transform.position)
+                        + "\ndraggerRb.angularVelocity * Mathf.Rad2Deg = " + (draggerRb.angularVelocity * Mathf.Rad2Deg)
+                    );
+                }
             }
         }
 
