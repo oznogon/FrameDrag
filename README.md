@@ -41,3 +41,15 @@ In this implementation, dragging relies on Rigidbodies, but the concept itself d
 Nothing in this implementation reports the relative velocity between the receiver and the dragger. If you've implemented collision damage or other effects based on the dragger's or receiver's velocity or other physics properties, you might be surprised by the results when those interactions occur between receivers or a receiver and its dragger.
 
 This implementation isn't optimized for large numbers of receivers affected by a single dragger.
+
+## Demos
+
+This includes two demo scenes:
+
+-   **Basic Demo** shows capsules being moved by a carrier object, including a stationary capsule that enters the carrier object during its movement.
+
+-   **Carrier Ship Demo** includes a carrier ship flying in a straight line while rotating, with a single red surface acting as the effect origin and a flyable player ship (WASD to rotate, R to throttle up, F to throttle down). The effect radius means that flying the player ship toward the top of the carrier's interior will cause it to slip out of the back of the carrier as the drag magnitude is reduced.
+
+    The ship scripts are (c) [brihernandez](https://github.com/brihernandez/ArcadeSpaceFlightExample/) and distributed here under the MIT license (see LICENSE.md in the "Demo scripts" folder).
+
+    The prefabs for this scene are in the "Demo prefabs" folder.
